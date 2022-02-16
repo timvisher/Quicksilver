@@ -1474,6 +1474,9 @@ NSMutableDictionary *bindingsDict = nil;
 		[self setSearchArray:nil];
 		if (!partialString || partialString.length <= 1) {
 			[self clearSearch];
+			if ([self allowText] && [[[self textModeEditor] string] length]) {
+				[[self textModeEditor] setString:@""];
+			}
 			return;
 		}
 		
