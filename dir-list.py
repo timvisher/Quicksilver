@@ -93,8 +93,11 @@ def buildListing(dirs,files,label):
     """)
 
     rowFragment = ""
-    
-    filenameRegex = re.compile(r'Quicksilver[_\s]{1}[Bb]?([0-9]{2})\.([a-zA-Z]{3})')
+    print(files)
+    filenameRegex = re.compile(r'Quicksilver[_\s]{1}[Bb]?([0-9]{2}|(?:[0-9]+\.?){1,3})\.([a-zA-Z]{3})')
+    for f in files:
+        print(f)
+        print(re.search(filenameRegex, f))
     files.sort(key=lambda x: re.search(filenameRegex,x).group(1),reverse=True)
     htmlFile = open('index.html','r').read().decode('utf-8')
     
@@ -107,7 +110,7 @@ def buildListing(dirs,files,label):
         # We could perhaps mount the DMG to get the architecture?
         # arch_details = getoutput('file "%s"' % f)
         rowFragment += rowTemplate.substitute(
-            name=u''.join([u'Quicksilver ß',parts.group(1),u' (',parts.group(2),u')']).encode('utf-8'),
+            name=u''.join([u'Quicksilver ',parts.group(1),u' (',parts.group(2),u')']).encode('utf-8'),
             link="./"+escapedName.encode('utf-8'),
             upload = strftime("%d %b %Y",localtime(os.path.getmtime(f))),
             # architcture details
