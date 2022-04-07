@@ -94,7 +94,7 @@ def buildListing(dirs,files,label):
 
     rowFragment = ""
     print(files)
-    filenameRegex = re.compile(r'Quicksilver[_\s]{1}[Bb]?([0-9]{2}|(?:[0-9]+\.?){1,3})\.([a-zA-Z]{3})')
+    filenameRegex = re.compile(r'Quicksilver[_\s.]{1}[Bb]?([0-9]{2}|(?:[0-9]+\.?){1,3})\.([a-zA-Z]{3})')
     for f in files:
         print(f)
         print(re.search(filenameRegex, f))
